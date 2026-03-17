@@ -4,6 +4,11 @@ Quick demo to show how an MCP allows an LLM-based chatbot to query a SQLite data
 This uses qwen3.5:0.8b as the agent model.
 
 1. Install Ollama
+
+``` sh
+https://ollama.com/download
+```
+
 2. Pull the model
 
 ``` sh
