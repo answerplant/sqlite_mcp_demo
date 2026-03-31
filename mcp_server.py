@@ -1,4 +1,3 @@
-
 """
 Demo SQLite MCP in Python
 https://github.com/arjunprabhulal/mcp-llama3-client/blob/main/mcp_flight_client.py
@@ -12,24 +11,34 @@ import sqlite3
 from setup import setup_db
 from mcp.server.fastmcp import FastMCP
 
-setup_db('answer', 'capabilities')
+setup_db("answer", "capabilities")
 from loguru import logger
 
 mcp = FastMCP("SQL Agent Server")
 
+
 @mcp.tool()
 def query_data(sql: str) -> str:
     """Execute SQL queries safely."""
-    logger.info(f"Executing SQL query: {sql}")
-    conn = sqlite3.connect("./answer.db")
+    logger.info(
+        f"Executing SQL query: {sql}"
+    )
+    conn = sqlite3.connect(
+        "./answer.db"
+    )
     try:
-        result = conn.execute(sql).fetchall()
+        result = conn.execute(
+            sql
+        ).fetchall()
         conn.commit()
-        return "\n".join(str(row) for row in result)
+        return "\n".join(
+            str(row) for row in result
+        )
     except Exception as e:
         return f"Error: {str(e)}"
     finally:
         conn.close()
+
 
 if __name__ == "__main__":
     print("Starting server...")
